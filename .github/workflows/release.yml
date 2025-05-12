@@ -132,10 +132,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Publica el paquete en npm
-      - name: Publish npm_lib to npm
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./npm_lib
-          access: public
+      # # Publica el paquete en npm (Temporally removed because npm has a bug in the account)
+      # - name: Publish npm_lib to npm
+      #   uses: JS-DevTools/npm-publish@v3
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
+      #     package: ./npm_lib
+      #     access: public
