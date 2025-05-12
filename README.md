@@ -4,10 +4,10 @@
 
 <!-- ![qs_lib Banner](https://via.placeholder.com/800x200.png?text=qs_lib+Banner)  -->
 
-![](https://img.shields.io/github/downloads/quasar_store/qs_lib/total?logo=github)
-![](https://img.shields.io/github/downloads/quasar_store/qs_lib/latest/total?logo=github)
-![](https://img.shields.io/github/contributors/quasar_store/qs_lib?logo=github)
-![](https://img.shields.io/github/v/release/quasar_store/qs_lib?logo=github) 
+![](https://img.shields.io/github/downloads/emanueldev1/qs_lib/total?logo=github)
+![](https://img.shields.io/github/downloads/emanueldev1/qs_lib/latest/total?logo=github)
+![](https://img.shields.io/github/contributors/emanueldev1/qs_lib?logo=github)
+![](https://img.shields.io/github/v/release/emanueldev1/qs_lib?logo=github) 
 
 `qs_lib` is a library designed to streamline FiveM development, providing reusable modules, optimized methods, and ready-to-use UI elements. Perfect for developers looking to save time and enhance the quality of their resources.
 

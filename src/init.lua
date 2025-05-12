@@ -42,7 +42,7 @@ cache = {
 
 if not LoadResourceFile(lib.name, 'web/build/index.html') then
    local err =
-   '^1Unable to load UI. Build qs_lib or download the latest release.\n	^3https://github.com/quasar_store/qs_lib/releases/latest/download/qs_lib.zip^0'
+   '^1Unable to load UI. Build qs_lib or download the latest release.\n	^3https://github.com/emanueldev1/qs_lib/releases/latest/download/qs_lib.zip^0'
    function lib.hasLoaded() return err end
 
    error(err)
