@@ -69,4 +69,4 @@ function lib.versionCheck(repository)
    end)
 end
 
-lib.versionCheck('quasar_store/qs_lib')
+lib.versionCheck('emanueldev1/qs_lib')
