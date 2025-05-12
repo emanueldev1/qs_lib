@@ -1,33 +1,33 @@
 {
-  "language": "English",
-  "settings": "Settings",
+  "language": "Deutsch",
+  "settings": "Einstellungen",
   "interface": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
-    "more": "More..."
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "more": "Mehr ..."
   },
   "position": {
-    "bottom": "Bottom",
-    "bottom-left": "Bottom-left",
-    "bottom-right": "Bottom-right",
-    "center-left": "Center-left",
-    "center-right": "Center-right",
+    "bottom": "Unten",
+    "bottom-left": "Unten links",
+    "bottom-right": "Unten-rechts",
+    "center-left": "Mittig links",
+    "center-right": "Mittig rechts",
     "top": "Top",
-    "top-left": "Top-left",
-    "top-right": "Top-right"
+    "top-left": "Oben-links",
+    "top-right": "Oben-rechts"
   },
   "settings_ui": {
-    "locale": "Change locale",
-    "locale_description": "Current language: ${language} (%s)",
-    "notification_audio": "Notification audio",
-    "notification_position": "Notification position"
+    "locale": "Ändern lokal",
+    "locale_description": "Aktuelle Sprache: ${language} (%s)",
+    "notification_audio": "Benachrichtigungston",
+    "notification_position": "Benachrichtigungsposition"
   },
-  "open_radial_menu": "Open radial menu",
-  "cancel_progress": "Cancel current progress bar",
-  "txadmin_announcement": "Server announcement by %s",
-  "txadmin_dm": "Direct Message from %s",
-  "txadmin_warn": "You have been warned by %s",
+  "open_radial_menu": "Radialmenü öffnen",
+  "cancel_progress": "Aktuelle Fortschrittsleiste abbrechen",
+  "txadmin_announcement": "Server-Ankündigung von %s",
+  "txadmin_dm": "Direkte Nachricht von %s",
+  "txadmin_warn": "Du wurdest von %s gewarnt",
   "txadmin_warn_content": "%s  \nAction ID: %s",
-  "txadmin_scheduledrestart": "Scheduled Restart"
+  "txadmin_scheduledrestart": "Geplanter Neustart"
 }
