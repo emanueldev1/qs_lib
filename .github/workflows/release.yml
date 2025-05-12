@@ -53,7 +53,13 @@ jobs:
 
       # Actualiza la versión en npm_lib
       - name: Bump npm_lib version
-        run: pnpm version ${{ github.ref_name }} --no-git-tag-version
+        run: |
+          CURRENT_VERSION=$(jq -r '.version' package.json)
+          if [ "$CURRENT_VERSION" != "${{ github.ref_name }}" ]; then
+            pnpm version ${{ github.ref_name }} --no-git-tag-version
+          else
+            echo "Version $CURRENT_VERSION already matches ${{ github.ref_name }}, skipping version bump"
+          fi
         working-directory: npm_lib
 
       # Construye el proyecto web
