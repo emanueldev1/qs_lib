@@ -114,7 +114,7 @@ jobs:
         run: |
           mkdir -p ./temp/qs_lib/web
           cp ./{LICENSE,README.md,fxmanifest.lua,init.lua} ./temp/qs_lib
-          cp -r ./{modules,src,locales} ./temp/qs_lib
+          cp -r ./{modules,src,locales,bridge} ./temp/qs_lib
           cp -r ./web/build ./temp/qs_lib/web/
           cd ./temp && zip -r ../qs_lib.zip ./qs_lib
 
