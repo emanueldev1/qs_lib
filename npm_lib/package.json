@@ -1,7 +1,7 @@
 {
   "name": "@emanueldevv/qs_lib",
   "author": "quasar_store",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JS/TS wrapper for qs_lib exports",
   "main": "./shared/index.js",
   "sideEffects": ["./shared/resource/locale/index.js"],
