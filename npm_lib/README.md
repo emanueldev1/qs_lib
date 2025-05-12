@@ -1,6 +1,6 @@
-# qs_lib JS/TS wrapper
+# qs_lib JS wrapper
 
-Not all qs_lib functions found in Lua are supported, the ones that are will have a JS/TS example
+Not all qs_lib functions found in Lua are supported, the ones that are will have a JS example
 on the documentation.
 
 You still need to use and have the qs_lib resource included into the resource you are using the npm package in.
@@ -9,29 +9,29 @@ You still need to use and have the qs_lib resource included into the resource yo
 
 ```yaml
 # With pnpm
-pnpm add @quasar_store/qs_lib
+pnpm add @emanueldevv/qs_lib
 
 # With Yarn
-yarn add @quasar_store/qs_lib
+yarn add @emanueldevv/qs_lib
 
 # With npm
-npm install @quasar_store/qs_lib
+npm install @emanueldevv/qs_lib
 ```
 
 ## Usage
 You can either import the lib from client or server files or deconstruct the object and import only certain functions
 you may require.
 
-```ts
-import lib from '@quasar_store/qs_lib/client'
+```js
+import lib from '@emanueldevv/qs_lib/client'
 ```
 
-```ts
-import lib from '@quasar_store/qs_lib/server'
+```js
+import lib from '@emanueldevv/qs_lib/server'
 ```
 
-```ts
-import { checkDependency } from '@quasar_store/qs_lib/shared';
+```js
+import { checkDependency } from '@emanueldevv/qs_lib/shared';
 ```
 
 ## Documentation
