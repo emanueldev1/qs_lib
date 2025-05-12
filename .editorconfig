@@ -1,0 +1,20 @@
+# EditorConfig configuration for consistent coding styles
+# Learn more at: https://EditorConfig.org
+
+# This is the root EditorConfig file
+root = true
+
+# Default settings for all files
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = false
+max_line_length = 250
+
+# Specific settings for Lua files
+[*.lua]
+indent_size = 3
+max_line_length = 250

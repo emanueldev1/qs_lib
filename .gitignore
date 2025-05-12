@@ -1,0 +1,40 @@
+# Editor and IDE files
+.idea/
+.vscode/
+*.code-workspace
+
+# Lua/FiveM specific
+created_zones.lua
+*.bak
+*.tmp
+cache/
+stream/
+
+# Node.js and JavaScript dependencies
+node_modules/
+pnpm-debug.log
+npm-debug.log
+yarn-error.log
+/web/node_modules/
+/npm_lib/**/*.js
+/npm_lib/**/*.js.map
+/npm_lib/**/*.d.ts
+
+# Build and distribution outputs
+/web/build/
+/dist/
+/out/
+
+# Miscellaneous
+*.log
+*.lock
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Environment and configuration
+.env
+.env.local
+.env.*.local
+config.local.lua

@@ -1,0 +1,123 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  create-release:
+    name: Build and Create Tagged Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Necesario para crear releases y hacer commits
+
+    steps:
+      # Instala herramientas de archivo
+      - name: Install archive tools
+        run: sudo apt-get update && sudo apt-get install -y zip
+
+      # Clona el repositorio
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Necesario para historial completo
+
+      # Configura pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.6.1
+
+      # Configura Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+
+      # Establece la variable de entorno para la versión
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      # Instala dependencias en web
+      - name: Install web dependencies
+        run: pnpm install
+        working-directory: web
+
+      # Instala dependencias en npm_lib
+      - name: Install npm_lib dependencies
+        run: pnpm install
+        working-directory: npm_lib
+
+      # Actualiza la versión en npm_lib
+      - name: Bump npm_lib version
+        run: pnpm version ${{ github.ref_name }} --no-git-tag-version
+        working-directory: npm_lib
+
+      # Construye el proyecto web
+      - name: Run build
+        run: pnpm build
+        working-directory: web
+        env:
+          CI: false
+
+      # Actualiza la versión en fxmanifest.lua
+      - name: Bump manifest version
+        run: node .github/actions/bump-manifest-version.js
+        env:
+          N_RELEASE_V: ${{ github.ref_name }}
+
+      # Crea una rama temporal y configura el upstream
+      - name: Create temporary branch
+        run: |
+          git checkout -b temp-release-${{ github.ref_name }}
+          git push --set-upstream origin temp-release-${{ github.ref_name }}
+
+      # Commit de los cambios en fxmanifest.lua
+      - name: Push manifest change
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: fxmanifest.lua
+          message: 'chore: bump manifest version to ${{ github.ref_name }}'
+          author_name: Manifest Bumper
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          push: true
+
+      # Actualiza la etiqueta para que apunte al nuevo commit
+      - name: Update tag
+        run: |
+          git tag -f ${{ github.ref_name }}
+          git push origin -f ${{ github.ref_name }}
+
+      # Crea el archivo ZIP
+      - name: Bundle files
+        run: |
+          mkdir -p ./temp/qs_lib/web
+          cp ./{LICENSE,README.md,fxmanifest.lua,init.lua} ./temp/qs_lib
+          cp -r ./{modules,src,locales} ./temp/qs_lib
+          cp -r ./web/build ./temp/qs_lib/web/
+          cd ./temp && zip -r ../qs_lib.zip ./qs_lib
+
+      # Crea el release en GitHub
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ env.RELEASE_VERSION }}
+          prerelease: false
+          files: qs_lib.zip
+          body: |
+            Release ${{ env.RELEASE_VERSION }}
+            - Automated release with bundled files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Publica el paquete en npm
+      - name: Publish npm_lib to npm
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./npm_lib
+          access: public
