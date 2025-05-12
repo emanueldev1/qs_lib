@@ -55,10 +55,12 @@ jobs:
       - name: Bump npm_lib version
         run: |
           CURRENT_VERSION=$(jq -r '.version' package.json)
-          if [ "$CURRENT_VERSION" != "${{ github.ref_name }}" ]; then
-            pnpm version ${{ github.ref_name }} --no-git-tag-version
+          TAG_VERSION=${{ github.ref_name }}
+          TAG_VERSION=${TAG_VERSION#v} # Elimina el prefijo "v"
+          if [ "$CURRENT_VERSION" != "$TAG_VERSION" ]; then
+            pnpm version $TAG_VERSION --no-git-tag-version
           else
-            echo "Version $CURRENT_VERSION already matches ${{ github.ref_name }}, skipping version bump"
+            echo "Version $CURRENT_VERSION already matches $TAG_VERSION, skipping version bump"
           fi
         working-directory: npm_lib
 
