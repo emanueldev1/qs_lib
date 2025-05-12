@@ -8,7 +8,7 @@ name 'QuasarLib'
 author 'Quasar Development Team'
 version '0.0.0'
 license 'LGPL-3.0-or-later'
--- repository 'https://github.com/quasar_store/qs_lib'
+repository 'https://github.com/emanueldev1/qs_lib'
 description 'A comprehensive utility library providing reusable functions for seamless integration across multiple resources.'
 
 ui_page 'web/build/index.html'
