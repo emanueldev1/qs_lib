@@ -25,8 +25,7 @@
 ## 📚 Documentation
 
 Explore the full documentation at:  
-👉 **[emanueldev1.dev/qs_lib](https://emanueldev1.dev/qs_lib)**
-
+👉 **[emanueldev1.dev/qs_lib](https://open.quasar-store.com/docs/qs_lib/)**
 ---
 
 ## 💾 Download
