@@ -13,10 +13,8 @@ import Dev from "./features/dev"
 import { isEnvBrowser } from "./utils/misc.js"
 import SkillCheck from "./features/skillcheck"
 import RadialMenu from "./features/menu/radial"
-import { useConfig } from "./providers/ConfigProvider"
 
 const App = () => {
-  const { config } = useConfig()
 
   useNuiEvent("setClipboard", data => {
     setClipboard(data)

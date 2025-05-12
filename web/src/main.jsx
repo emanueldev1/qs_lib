@@ -8,7 +8,6 @@ import { fab } from "@fortawesome/free-brands-svg-icons"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { isEnvBrowser } from "./utils/misc.js"
 import LocaleProvider from "./providers/LocaleProvider"
-import ConfigProvider from "./providers/ConfigProvider"
 import ErrorBoundary from "./providers/errorBoundary"
 
 library.add(fas, far, fab)
@@ -29,11 +28,9 @@ const root = document.getElementById("root")
 createRoot(root).render(
   <StrictMode>
     <LocaleProvider>
-      <ConfigProvider>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
-      </ConfigProvider>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </LocaleProvider>
   </StrictMode>
 )

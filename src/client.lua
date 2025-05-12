@@ -25,17 +25,3 @@ end
 function RegisterCommand(commandName, callback, restricted)
    CommandManager:RegisterSecureCommand(commandName, callback, restricted)
 end
-
--- Módulo interno para la gestión de configuración
-local ConfigManager = {}
-
-function ConfigManager:FetchUIConfig()
-   return {
-      primaryColor = GetConvar('qs:primaryColor', 'blue'),
-      primaryShade = GetConvarInt('qs:primaryShade', 8)
-   }
-end
-
-RegisterNUICallback('getSettings', function(_, cb)
-   cb(ConfigManager:FetchUIConfig())
-end)
