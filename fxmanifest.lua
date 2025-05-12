@@ -54,6 +54,3 @@ dependencies {
 
 
 provide 'ox_lib'
-
-
--- letters to test the release process.
