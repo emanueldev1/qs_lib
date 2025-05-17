@@ -79,7 +79,7 @@ const AlertDialog = () => {
                 onClick={() => handleAlertClose("cancel")}
                 className="uppercase"
               >
-                {dialogData.labels?.cancel || locale.interface.cancel}
+                {dialogData.labels?.cancel || locale?.interface?.cancel}
               </Button>
             )}
             <Button
@@ -87,7 +87,7 @@ const AlertDialog = () => {
               onClick={() => handleAlertClose("confirm")}
               className="uppercase"
             >
-              {dialogData.labels?.confirm || locale.interface.confirm}
+              {dialogData.labels?.confirm || locale?.interface?.confirm}
             </Button>
           </div>
         </div>

@@ -249,7 +249,7 @@ const InputDialog = () => {
                   {locale.interface.cancel}
                 </Button>
                 <Button type="submit" variant="secondary" className="uppercase">
-                  {locale.interface.confirm}
+                  {locale?.interface?.confirm}
                 </Button>
               </div>
             </div>

@@ -1,12 +1,9 @@
--- This script provides a keybind management system for FiveM, allowing developers to register custom keybinds
--- with associated press and release events. It supports key mapping, disabling keybinds, and retrieving the current key.
-
 if cache.game == 'redm' then return end
 
 ---@class KeybindProps
 ---@field name string
 ---@field description string
----@field defaultMapper? string (see: https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/)
+---@field defaultMapper? string
 ---@field defaultKey? string
 ---@field disabled? boolean
 ---@field disable? fun(self: CKeybind, toggle: boolean)
@@ -28,7 +25,7 @@ local keybinds = {}
 local IsPauseMenuActive = IsPauseMenuActive
 local GetControlInstructionalButton = GetControlInstructionalButton
 
--- Metatable for keybind objects, defining default behavior and methods
+-- Metatable for keybind objects
 local bindMetatable = {
    disabled = false,
    isPressed = false,
@@ -36,7 +33,6 @@ local bindMetatable = {
    defaultMapper = 'keyboard',
 }
 
--- Retrieves a property or method from the metatable or dynamically computes the current key
 function bindMetatable:__index(key)
    if key == 'currentKey' then
       return self:getCurrentKey()
@@ -44,33 +40,40 @@ function bindMetatable:__index(key)
    return bindMetatable[key]
 end
 
--- Returns the currently assigned key for this keybind, extracted from the control instructional button
 function bindMetatable:getCurrentKey()
    local button = GetControlInstructionalButton(0, self.hash, true)
    return button:sub(3)
 end
 
--- Checks if the keybind is currently pressed
 function bindMetatable:isControlPressed()
    return self.isPressed
 end
 
--- Toggles the disabled state of the keybind
 function bindMetatable:disable(state)
    self.disabled = state
 end
 
--- Registers a command for a keybind (press or release) with the specified handler
+-- Registrar comandos para presión y liberación con manejo explícito
 local function registerBindCommand(commandName, keybind, isPress)
    RegisterCommand(commandName, function()
       if keybind.disabled or IsPauseMenuActive() then return end
-      keybind.isPressed = isPress
-      local callback = isPress and keybind.onPressed or keybind.onReleased
-      if callback then callback(keybind) end
-   end)
+
+      -- Solo ejecutar si el estado de presión cambia
+      if isPress and not keybind.isPressed then
+         keybind.isPressed = true
+         if keybind.onPressed then
+            keybind.onPressed(keybind)
+         end
+      elseif not isPress and keybind.isPressed then
+         keybind.isPressed = false
+         if keybind.onReleased then
+            keybind.onReleased(keybind)
+         end
+      end
+   end, false)
 end
 
--- Sets up key mappings for a keybind, including primary and optional secondary keys
+-- Configurar mapeo de teclas
 local function setupKeyMappings(bindConfig)
    RegisterKeyMapping('+' .. bindConfig.name, bindConfig.description, bindConfig.defaultMapper, bindConfig.defaultKey)
    if bindConfig.secondaryKey then
@@ -79,7 +82,7 @@ local function setupKeyMappings(bindConfig)
    end
 end
 
--- Removes command suggestions from the chat to keep it clean
+-- Eliminar sugerencias del chat
 local function removeChatSuggestions(bindName)
    SetTimeout(500, function()
       TriggerEvent('chat:removeSuggestion', '/+' .. bindName)
@@ -91,21 +94,19 @@ end
 ---@return CKeybind
 function lib.addKeybind(config)
    ---@cast config CKeybind
-   -- Generate a unique hash for the keybind based on its name
    config.hash = joaat('+' .. config.name) | 0x80000000
 
-   -- Initialize the keybind with the metatable
    local keybind = setmetatable(config, bindMetatable)
    keybinds[config.name] = keybind
 
-   -- Register press and release commands
+   -- Registrar comandos de presión y liberación
    registerBindCommand('+' .. config.name, keybind, true)
    registerBindCommand('-' .. config.name, keybind, false)
 
-   -- Configure key mappings for the keybind
+   -- Configurar mapeo de teclas
    setupKeyMappings(config)
 
-   -- Clean up chat suggestions
+   -- Limpiar sugerencias del chat
    removeChatSuggestions(config.name)
 
    return keybind
