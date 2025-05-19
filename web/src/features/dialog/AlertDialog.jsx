@@ -73,7 +73,7 @@ const AlertDialog = () => {
             {dialogData.content}
           </ReactMarkdown>
           <div className="flex justify-end gap-2">
-            {dialogData.cancel && (
+            {dialogData?.cancel && (
               <Button
                 variant="outline"
                 onClick={() => handleAlertClose("cancel")}
@@ -83,11 +83,11 @@ const AlertDialog = () => {
               </Button>
             )}
             <Button
-              variant={dialogData.cancel ? "secondary" : "outline"}
+              variant={dialogData?.cancel ? "secondary" : "outline"}
               onClick={() => handleAlertClose("confirm")}
               className="uppercase"
             >
-              {dialogData.labels?.confirm || locale?.interface?.confirm}
+              {dialogData?.labels?.confirm || locale?.interface?.confirm}
             </Button>
           </div>
         </div>

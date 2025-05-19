@@ -246,7 +246,7 @@ const InputDialog = () => {
                   className="uppercase"
                   disabled={dialogData.options?.allowCancel === false}
                 >
-                  {locale.interface.cancel}
+                  {locale?.interface?.cancel}
                 </Button>
                 <Button type="submit" variant="secondary" className="uppercase">
                   {locale?.interface?.confirm}

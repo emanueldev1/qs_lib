@@ -6,7 +6,7 @@ rdr3_warning 'I understand that this is an early RedM build, and I accept that m
 
 name 'QuasarLib'
 author 'Quasar Development Team'
-version '1.0.0'
+version '0.0.0'
 license 'LGPL-3.0-or-later'
 repository 'https://github.com/emanueldev1/qs_lib'
 description 'A comprehensive utility library providing reusable functions for seamless integration across multiple resources.'
@@ -53,4 +53,4 @@ dependencies {
 }
 
 
--- provide 'ox_lib'
+provide 'ox_lib'
