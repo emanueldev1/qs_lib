@@ -75,7 +75,7 @@ jobs:
           git checkout -b temp-release-${{ github.ref_name }}
           git push --set-upstream origin temp-release-${{ github.ref_name }}
 
-      # Commit fxmanifest.lua changes
+      # Commit de los cambios en fxmanifest.lua
       - name: Push manifest change
         uses: EndBug/add-and-commit@v9
         with:
@@ -85,13 +85,13 @@ jobs:
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           push: true
 
-      # Update the tag to point to the new commit
+      # Actualiza la etiqueta para que apunte al nuevo commit
       - name: Update tag
         run: |
           git tag -f ${{ github.ref_name }}
           git push origin -f ${{ github.ref_name }}
 
-      # Merge the temporary branch into master
+      # Merge de la rama temporal a la rama principal (master)
       - name: Merge to master
         run: |
           git fetch origin
@@ -101,7 +101,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Delete the temporary branch
+      # Elimina la rama temporal
       - name: Clean up temporary branch
         run: |
           git push origin --delete temp-release-${{ github.ref_name }}
@@ -109,7 +109,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Create ZIP file
+      # Crea el archivo ZIP
       - name: Bundle files
         run: |
           mkdir -p ./temp/qs_lib/web
@@ -118,7 +118,7 @@ jobs:
           cp -r ./web/build ./temp/qs_lib/web/
           cd ./temp && zip -r ../qs_lib.zip ./qs_lib
 
-      # Create GitHub Release
+      # Crea el release en GitHub
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
@@ -132,7 +132,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Publish NPM Package (Temporally removed because npm has a bug in the account)
+      # # Publica el paquete en npm (Temporally removed because npm has a bug in the account)
       - name: Publish npm_lib to npm
         uses: JS-DevTools/npm-publish@v3
         with:
