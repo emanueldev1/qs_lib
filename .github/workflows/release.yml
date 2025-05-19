@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # Necesario para crear releases y hacer commits
-
+      workflows: write # Agregar este permiso
     steps:
       # Instala herramientas de archivo
       - name: Install archive tools
