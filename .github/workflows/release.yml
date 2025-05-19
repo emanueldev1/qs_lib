@@ -74,6 +74,8 @@ jobs:
         run: |
           git checkout -b temp-release-${{ github.ref_name }}
           git push --set-upstream origin temp-release-${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Commit de los cambios en fxmanifest.lua
       - name: Push manifest change
