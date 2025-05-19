@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # Necesario para crear releases y hacer commits
-      workflows: write # Agregar este permiso
+
     steps:
       # Instala herramientas de archivo
       - name: Install archive tools
@@ -69,14 +69,8 @@ jobs:
         env:
           N_RELEASE_V: ${{ github.ref_name }}
 
-      # Crea una rama temporal y configura el upstream
-      - name: Create temporary branch
-        run: |
-          git checkout -b temp-release-${{ github.ref_name }}
-          git push --set-upstream origin temp-release-${{ github.ref_name }}
-
       # Commit de los cambios en fxmanifest.lua
-      - name: Push manifest change
+      - name: Push manifest version change
         uses: EndBug/add-and-commit@v9
         with:
           add: fxmanifest.lua
@@ -84,30 +78,11 @@ jobs:
           author_name: Manifest Bumper
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           push: true
-
-      # Actualiza la etiqueta para que apunte al nuevo commit
-      - name: Update tag
-        run: |
-          git tag -f ${{ github.ref_name }}
-          git push origin -f ${{ github.ref_name }}
-
-      # Merge de la rama temporal a la rama principal (master)
-      - name: Merge to master
-        run: |
-          git fetch origin
-          git checkout master
-          git merge temp-release-${{ github.ref_name }} --no-ff -m "Merge release ${{ github.ref_name }} into master"
-          git push origin master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Elimina la rama temporal
-      - name: Clean up temporary branch
-        run: |
-          git push origin --delete temp-release-${{ github.ref_name }}
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update tag ref
+        uses: EndBug/latest-tag@latest
+        with:
+          ref: ${{ github.ref_name }}
 
       # Crea el archivo ZIP
       - name: Bundle files
@@ -128,7 +103,6 @@ jobs:
           files: qs_lib.zip
           body: |
             Release ${{ env.RELEASE_VERSION }}
-            - Automated release with bundled files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
