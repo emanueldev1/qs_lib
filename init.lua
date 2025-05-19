@@ -262,6 +262,7 @@ function QSLibCore:_setupCache()
    end
    cache = self.cache
    _ENV.cache = self.cache
+   lib.onCache = self.modules.onCache
 end
 
 function QSLibCore:initializeBridges()

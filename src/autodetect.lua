@@ -1,3 +1,5 @@
+local tbl = require 'modules.shared.table'
+
 -- Resource types and bridge configuration data
 local data = {
    bridgeTypes = { 'fuel', 'inventory', 'keys', 'player', 'time' }, -- this bridges will load on startup of the resource (NOT IN THE LIB, FOR THE LIB YOU WILL USE THE lib.loadBridge)
@@ -70,8 +72,8 @@ end
 -- Find the system type for a given resource
 local function findResourceInMap(resourceName)
    for systemType, resourceList in pairs(resourceMap) do
-      if lib.table.contains(resourceList, resourceName) then  -- Using lib.table.contains for table lookup
-         if not lib.table.contains(data.bridgeTypes, systemType) and GetCurrentResourceName() ~= lib.name then
+      if tbl.contains(resourceList, resourceName) then  -- Using tbl.contains for table lookup
+         if not tbl.contains(data.bridgeTypes, systemType) and GetCurrentResourceName() ~= lib.name then
             lib.print.warn(('System type %s for resource %s is not in bridgeTypes'):format(systemType, resourceName))
             return nil
          end
