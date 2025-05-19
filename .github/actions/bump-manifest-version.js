@@ -36,5 +36,4 @@ async function updateManifestVersion() {
   }
 }
 
-// Run the function
 updateManifestVersion();
