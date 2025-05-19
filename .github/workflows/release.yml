@@ -83,12 +83,12 @@ jobs:
         run: |
           git config --local user.name "Manifest Bumper"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout master  # Cambia a la rama principal (ajusta a 'master' si usas esa rama)
           git add fxmanifest.lua
           git commit -m "chore: bump manifest version to ${{ github.ref_name }}"
-          git push origin master
+          git push origin master  # Asegúrate de pushear a la rama correcta
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REF: ${{ github.ref_name }}
       
       - name: Update tag ref
         uses: EndBug/latest-tag@latest
