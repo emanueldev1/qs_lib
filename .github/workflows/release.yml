@@ -69,15 +69,26 @@ jobs:
         env:
           N_RELEASE_V: ${{ github.ref_name }}
 
-      # Commit de los cambios en fxmanifest.lua
-      - name: Push manifest version change
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: fxmanifest.lua
-          message: 'chore: bump manifest version to ${{ github.ref_name }}'
-          author_name: Manifest Bumper
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          push: true
+      # # Commit de los cambios en fxmanifest.lua
+      # - name: Push manifest version change
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     add: fxmanifest.lua
+      #     message: 'chore: bump manifest version to ${{ github.ref_name }}'
+      #     author_name: Manifest Bumper
+      #     author_email: 41898282+github-actions[bot]@users.noreply.github.com
+      #     push: true
+
+      - name: Commit de los cambios en el fxmanifest.lua
+        run: |
+          git config --local user.name "Manifest Bumper"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fxmanifest.lua
+          git commit -m "chore: bump manifest version to ${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REF: ${{ github.ref_name }}
       
       - name: Update tag ref
         uses: EndBug/latest-tag@latest
