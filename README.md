@@ -19,6 +19,7 @@
 - **Optimized Methods**: Tested and efficient functions to speed up development.
 - **UI Elements**: Predefined interface components for a consistent visual experience.
 - **Compatibility**: Seamlessly integrates with the FiveM ecosystem.
+- **Bridges**: Bridges to get more copatibility in fivem resources and frameworks with one simple interface
 
 ---
 
