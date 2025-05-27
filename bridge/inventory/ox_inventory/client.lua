@@ -1,3 +1,5 @@
+-- Copyright (C) 2025 emanueldev1. Licensed under the GNU Lesser General Public License v3.0 (LGPL-3.0). See https://www.gnu.org/licenses/lgpl-3.0.html for details.
+
 --- Inventory management library (ox_inventory)
 --  ADVICE: This bridge has not entire bridge support The inventory system has very few events and functions on client side.
 --- This module provides a template for integrating custom inventory systems.

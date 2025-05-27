@@ -1,3 +1,5 @@
+-- Copyright (C) 2025 emanueldev1. Licensed under the GNU Lesser General Public License v3.0 (LGPL-3.0). See https://www.gnu.org/licenses/lgpl-3.0.html for details.
+
 --- Player management library for QBXCore framework.
 --- This module provides a standardized interface for accessing and managing player-related data and actions on the server side in FiveM.
 --- It integrates seamlessly with QBXCore, retrieving data via exports['qbx_core']:GetPlayer() and lib.framework.Functions.
