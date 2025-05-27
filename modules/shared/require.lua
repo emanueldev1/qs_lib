@@ -1,6 +1,7 @@
--- Adapted from ox_lib (https://github.com/overextended/ox_lib/blob/master/imports/require/shared.lua)
--- Licensed under LGPL-3.0: https://www.gnu.org/licenses/lgpl-3.0.html
--- and is used under the same license.
+-- This file contains code adapted from ox_lib, developed by the Overextended team.
+-- Original repository: https://github.com/overextended/ox_lib
+-- License: GNU Lesser General Public License v3.0 (LGPL-3.0), available at https://www.gnu.org/licenses/lgpl-3.0.html
+-- Modifications by emanueldev1 for the qs_lib project, licensed under LGPL-3.0.
 
 
 -- Module loader for FiveM. Loads Lua scripts and JSON files from resource directories,

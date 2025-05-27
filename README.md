@@ -84,3 +84,18 @@ Contributions are welcome! If you'd like to improve `qs_lib`, feel free to open 
 Have questions or suggestions? Reach out to me at [emanueldev1.dev](https://emanueldev1.dev) or on GitHub.
 
 ---
+
+
+## License
+This project is licensed under the GNU Lesser General Public License v3.0 (LGPL-3.0). See the LICENSE file for details.
+
+
+
+## Attribution
+This project contains code adapted from ox_lib, developed by the Overextended team.
+
+Original repository: https://github.com/overextended/ox_lib
+License: GNU Lesser General Public License v3.0 (LGPL-3.0), available at https://www.gnu.org/licenses/lgpl-3.0.html
+
+qs_lib was developed and modified by emanueldev1, building upon ox_lib to create a tailored solution for the developers of fivem resources and continue to maintain the project after the archiving of the ox_lib project..
+We thank the Overextended team for their work on ox_lib, which serves as a foundation for this project.

@@ -23,15 +23,6 @@ function KvpUtils:SafeRetrieve(fn, key, fallback)
    return result or fallback
 end
 
----@generic T
----@param fn fun(key): unknown
----@param key string
----@param default? T
----@return T
-local function safeGetKvp(fn, key, default)
-   return KvpUtils:SafeRetrieve(fn, key, default)
-end
-
 -- Inicializar configuraciones
 local settings = {
    default_locale = GetConvar('qs:locale', 'en'),

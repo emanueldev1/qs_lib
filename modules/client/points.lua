@@ -1,3 +1,8 @@
+-- This file contains code adapted from ox_lib, developed by the Overextended team.
+-- Original repository: https://github.com/overextended/ox_lib
+-- License: GNU Lesser General Public License v3.0 (LGPL-3.0), available at https://www.gnu.org/licenses/lgpl-3.0.html
+-- Modifications by emanueldev1 for the qs_lib project, licensed under LGPL-3.0.
+
 -- points.lua: Manages dynamic points of interest in FiveM, tracking their proximity to the player.
 -- This module allows developers to create points with custom behaviors for entering, exiting, and staying nearby,
 -- efficiently handling spatial queries and event triggers based on player position.
